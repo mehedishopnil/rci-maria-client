@@ -168,8 +168,8 @@ const Home = () => {
       </div>
 
       {/* Resorts Where I Can Hit the Beach */}
-      {/* <div className="bg-[#e3f5f9] py-5">
-        <div className="flex flex-col items-center text-center">
+      <div className="bg-[#e3f5f9] py-5">
+        {/* <div className="flex flex-col items-center text-center">
           <h1 className="text-4xl font-bold uppercase homeHeader">
             Resorts where I can
           </h1>
