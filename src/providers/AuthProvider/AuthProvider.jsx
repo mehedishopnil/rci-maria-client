@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
 
       // Parse and update resort data
       const data = await response.json();
-      console.log("API Response:", data); // Log the API response
 
       // Ensure the response has the expected structure
       if (data) {

@@ -10,6 +10,10 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="bg-[#037092]">
       {/* Desktop Navbar */}
@@ -83,22 +87,38 @@ const Header = () => {
           <div className="absolute top-20 right-0 left-0 bg-white shadow-lg z-10">
             <ul className="p-5 space-y-4">
               <li>
-                <Link to="/lastCallVacation" className="text-gray-700 text-xl hover:text-blue-500">
+                <Link
+                  to="/lastCallVacation"
+                  className="text-gray-700 text-xl hover:text-blue-500"
+                  onClick={closeMenu} // Close menu on click
+                >
                   BOOK
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-gray-700 text-xl hover:text-blue-500">
+                <Link
+                  to="/"
+                  className="text-gray-700 text-xl hover:text-blue-500"
+                  onClick={closeMenu} // Close menu on click
+                >
                   HOME
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="text-gray-700 text-xl hover:text-blue-500">
+                <Link
+                  to="/login"
+                  className="text-gray-700 text-xl hover:text-blue-500"
+                  onClick={closeMenu} // Close menu on click
+                >
                   LOGIN
                 </Link>
               </li>
               <li>
-                <Link to="/signup" className="text-gray-700 text-xl hover:text-blue-500">
+                <Link
+                  to="/signup"
+                  className="text-gray-700 text-xl hover:text-blue-500"
+                  onClick={closeMenu} // Close menu on click
+                >
                   SIGN UP
                 </Link>
               </li>
