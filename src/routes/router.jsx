@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
                     element: <LastCallVacations/>
                },
                {
-                    path: "singleResortPage",
+                    path: "singleResortPage/:id",
                     element: <SingleResortPage/>
                },
                {
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
                {
                     path: "signup",
                     element: <SignUp/>
-               }
+               },
                
           ]
      }
