@@ -21,7 +21,7 @@ const RoomDetails = ({ room_details }) => {
   const isNotEmpty = (value) => value !== null && value !== undefined && value !== "";
 
   return (
-    <div className="my-5 p-4">
+    <div className="my-5 p-4 space-y-5">
       <h1 className="text-4xl font-semibold mb-2">Room Details</h1>
       <p>{room_Description}</p>
 
@@ -31,7 +31,7 @@ const RoomDetails = ({ room_details }) => {
 
       {/* Bedroom */}
       {isNotEmpty(sleeps_room) && (
-        <div className="border rounded">
+        <div className="border border-gray-300 rounded">
           <h1 className="text-center text-2xl pt-3 font-semibold">Bedroom</h1>
           <div className="divider divider-info"></div>
 
@@ -61,7 +61,7 @@ const RoomDetails = ({ room_details }) => {
 
       {/* Studio */}
       {isNotEmpty(studio_sleeps_room) && (
-        <div className="border rounded">
+        <div className="border border-gray-300 rounded">
           <h1 className="text-center text-2xl pt-3 font-semibold">Studio</h1>
           <div className="divider divider-info"></div>
 
@@ -91,7 +91,7 @@ const RoomDetails = ({ room_details }) => {
 
       {/* Hotel */}
       {isNotEmpty(hotel_room) && (
-        <div className="border rounded mb-5">
+        <div className="border border-gray-300 rounded mb-5">
           <h1 className="text-center text-2xl pt-3 font-semibold">Hotel</h1>
           <div className="divider divider-info"></div>
 
