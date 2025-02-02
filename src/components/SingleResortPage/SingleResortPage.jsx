@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { GiStarsStack } from "react-icons/gi";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Loading from "../Loading";
+import FilterContent from "./FilterContent/FilterContent";
 
 const SingleResortPage = () => {
   const { allResortData } = useContext(AuthContext);
@@ -181,6 +182,10 @@ const SingleResortPage = () => {
               <p className="font-bold">{reviews_amount} reviews</p>
             </div>
           </div>
+        </div>
+
+        <div className="overflow-hidden">
+        <FilterContent currentResort={currentResort} />
         </div>
 
       </div>
