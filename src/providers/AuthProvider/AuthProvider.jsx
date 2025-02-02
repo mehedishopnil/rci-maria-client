@@ -12,6 +12,8 @@ const AuthProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]); // State for filtered resort data
   const [allResortData, setAllResortData] = useState([]); // State for all resort data
 
+  console.log("here is the code:", import.meta.env.VITE_apiKey);
+
   // Fetch resort data from the API
   const fetchResortData = async () => {
     setLoading(true); // Set loading state to true
