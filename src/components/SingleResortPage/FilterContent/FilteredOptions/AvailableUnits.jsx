@@ -51,7 +51,7 @@ const AvailableUnits = ({ currentResort }) => {
       </div> */}
 
 {/* Last Call Vacation */}
-      <div className="border-[1px] rounded my-10 py-5 shadow-gray-200 shadow-md">
+      <div className="border-[1px] border-gray-300 rounded my-10 py-5 shadow-gray-200 shadow-md">
         <Link
           to="/single-available-unit"
           onClick={handleTransmission}
