@@ -5,6 +5,8 @@ import LastCallVacations from "../pages/LastCallVacations/LastCallVacations";
 import SingleResortPage from "../components/SingleResortPage/SingleResortPage";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Dashboard from "../layout/Dashboard/Dashboard";
+import Profile from "../pages/Profile/Profile";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +35,18 @@ export const router = createBrowserRouter([
                     element: <SignUp/>
                },
                
+          ]
+     },
+
+     // Dashboard Part
+     {
+          path: "dashboard",
+          element: <Dashboard/>,
+          children: [
+               {
+                    path: "profile",
+                    element: <Profile/>
+               }
           ]
      }
 ])

@@ -73,7 +73,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/profile" className="hover:text-gray-300">
+                      <Link to="/dashboard/profile" className="hover:text-gray-300">
                         <p className="text-lg font-medium">Profile</p>
                       </Link>
                     </li>
@@ -96,7 +96,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/profile" className="hover:text-gray-300">
+                      <Link to="/dashboard/profile" className="hover:text-gray-300">
                         <p className="text-lg font-medium">Profile</p>
                       </Link>
                     </li>
@@ -135,7 +135,7 @@ const Header = () => {
           {user ? (
             <>
               <IoMdNotificationsOutline className="text-2xl cursor-pointer hover:text-gray-300" />
-              <Link to="/profile">
+              <Link to="/dashboard/profile">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -174,7 +174,7 @@ const Header = () => {
         {/* Mobile Menu Toggle */}
         <div className="lg:hidden flex items-center space-x-4">
           {user && (
-            <Link to="/profile">
+            <Link to="/dashboard/profile">
               {user.photoURL ? (
                 <img
                   src={user.photoURL}
@@ -292,7 +292,7 @@ const Header = () => {
                     </li>
                     <li>
                       <Link
-                        to="/profile"
+                        to="/dashboard/profile"
                         onClick={closeMenu}
                         className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
                       >
@@ -335,7 +335,7 @@ const Header = () => {
                     </li>
                     <li>
                       <Link
-                        to="/profile"
+                        to="/dashboard/profile"
                         onClick={closeMenu}
                         className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
                       >
