@@ -8,7 +8,7 @@ const SignUp = () => {
   const [membership, setMembership] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUserProfile } = useContext(AuthContext);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -21,9 +21,27 @@ const SignUp = () => {
     const membership = form.membership.value;
 
     try {
-      const result = await createUser(name, email, password, membership);
+      const result = await createUser(email, password);
       const loggedUser = result.user;
+
+      // Update user profile with name and membership
+      await updateUserProfile(name);
+
+      // Send additional user info to the backend (optional)
+      const userInfo = { name, email, membership };
+      await fetch(`${import.meta.env.VITE_API_Link}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userInfo),
+      });
+
       console.log(loggedUser);
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You have signed up successfully!",
+      });
+
       navigate(from, { replace: true });
     } catch (error) {
       console.error("Error during SignUp:", error.message);
@@ -40,6 +58,15 @@ const SignUp = () => {
     try {
       const result = await googleLogin();
       const user = result.user;
+
+      // Save user info to the database if needed
+      const userInfo = { name: user.displayName, email: user.email, membership: "Google User" };
+      await fetch(`${import.meta.env.VITE_API_Link}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userInfo),
+      });
+
       console.log(user);
       Swal.fire({
         title: "Successfully Logged In with Google",
@@ -50,6 +77,7 @@ const SignUp = () => {
           popup: "animate__animated animate__fadeOutDown animate__faster",
         },
       });
+
       navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
