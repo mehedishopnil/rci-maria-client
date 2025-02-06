@@ -3,22 +3,21 @@ import { FaLock, FaRegEdit, FaUser } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdEmail, MdLogout, MdOutlineSupportAgent } from "react-icons/md";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
+import Loading from "../../components/Loading";
 
 const Profile = () => {
   const { user, signOut } = useContext(AuthContext);
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
+     <Loading />
     );
   }
 
   const { name, email, photoURL } = user;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f1f1f1] p-5">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f1f1f1] ">
       <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-md text-center">
         {/* Profile Picture */}
         <div className="relative">
@@ -73,7 +72,7 @@ const Profile = () => {
         {/* Logout Button */}
         <button
           onClick={signOut}
-          className="mt-6 bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 flex items-center gap-2 mx-auto"
+          className="mt-6 bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700-600 flex items-center gap-2 mx-auto"
         >
           <MdLogout className="text-lg" /> Log Out
         </button>
