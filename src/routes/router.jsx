@@ -7,6 +7,11 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import Profile from "../pages/Profile/Profile";
+import Overview from "../pages/Overview/Overview";
+import MyBookings from "../pages/MyBookings/MyBookings";
+import SingleAvailableUnit from "../components/SingleResortPage/SingleAvailabelUnit/SingleAvailabelUnit";
+import AvailableBooking from "../components/SingleResortPage/AvailableBooking/AvailableBooking";
+import Search from "../components/Search/Search";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +39,18 @@ export const router = createBrowserRouter([
                     path: "signup",
                     element: <SignUp/>
                },
+               {
+                    path: "search",
+                    element: <Search/>
+               },
+               {
+                    path: "single-available-unit",
+                    element: <SingleAvailableUnit/>
+               },
+               {
+                    path: "available-booking",
+                    element: <AvailableBooking/>
+               }
                
           ]
      },
@@ -46,6 +63,14 @@ export const router = createBrowserRouter([
                {
                     path: "profile",
                     element: <Profile/>
+               },
+               {
+                    path: "Overview",
+                    element: <Overview/>
+               },
+               {
+                    path: "MyBookings",
+                    element: <MyBookings/>
                }
           ]
      }

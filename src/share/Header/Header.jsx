@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router"; // Use `react-router-dom` instead of `react-router`
+import { Link } from "react-router";
 import logo from "../../assets/logo.svg";
 import {
   IoIosHelpCircleOutline,
@@ -16,6 +16,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { PiSignOut } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdAccountBalanceWallet } from "react-icons/md";
+import SearchBarMobile from "../../components/SearchBarMobile/SearchBarMobile";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -31,78 +32,75 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-[#037092] shadow-md">
+    <div className="bg-[#037092]">
       {/* Desktop Navbar */}
-      <div className="container mx-auto px-4 lg:px-10 py-3 flex justify-between items-center">
-        {/* Logo and Branding */}
-        <div className="flex items-center gap-4">
+      <div className="container mx-auto hidden md:px-10 lg:flex justify-between items-center navbar">
+        {/* Logo and Search Bar */}
+        <div className="navbar-start flex items-center gap-5">
           <Link to="/" className="z-20">
             <img src={logo} alt="Logo" className="w-12 h-12" />
           </Link>
-          <div className="w-px h-10 bg-white"></div>
+          <div className="w-[1px] h-14 bg-white"></div>
           <img
             src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
-            alt="Club Wyndham"
-            className="w-20"
+            alt=""
+            className="w-[80px]"
           />
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-8">
-          <ul className="flex space-x-6 text-white">
+        <div className="navbar-center">
+          <ul className="menu menu-horizontal px-1 text-white">
             <li>
-              <Link to="/lastCallVacation" className="hover:text-gray-300">
-                <p className="text-lg font-medium">BOOK</p>
+              <Link to="/lastCallVacation">
+                <p className="text-xl">BOOK</p>
               </Link>
             </li>
             {user && role ? (
               <>
                 <li>
-                  <Link to="/" className="hover:text-gray-300">
-                    <p className="text-lg font-medium">TRIPS</p>
+                  <Link to="/">
+                    <p className="text-xl">TRIPS</p>
                   </Link>
                 </li>
                 {role === "admin" ? (
                   <>
                     <li>
-                      <Link
-                        to="/admin-panel/admin-overview"
-                        className="hover:text-gray-300"
-                      >
-                        <p className="text-lg font-medium">Admin Panel</p>
+                      <Link to="/admin-panel/admin-overview">
+                        <p className="text-xl">AdminPanel</p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/profile" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">Profile</p>
+                      <Link to="/profile">
+                        <p className="text-xl">Profile</p>
                       </Link>
                     </li>
                   </>
                 ) : (
                   <>
                     <li>
-                      <Link to="/dashboard" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">Dashboard</p>
+                      <Link to="/dashboard">
+                        <p className="text-xl">Dashboard</p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/notifications" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">Notifications</p>
+                      <Link to="/notifications">
+                        <p className="text-xl">Notifications</p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/myAccount" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">My Account</p>
+                      <Link to="/myAccount">
+                        <p className="text-xl">My Account</p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/profile" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">Profile</p>
+                      <Link to="/profile">
+                        <p className="text-xl">Profile</p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/myFavorites" className="hover:text-gray-300">
-                        <p className="text-lg font-medium">My Favorites</p>
+                      <Link to="/myFavorites">
+                        <p className="text-xl">My Favorites</p>
                       </Link>
                     </li>
                   </>
@@ -111,18 +109,18 @@ const Header = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/" className="hover:text-gray-300">
-                    <p className="text-lg font-medium">HOME</p>
+                  <Link to="/">
+                    <p className="text-xl">HOME</p>
                   </Link>
                 </li>
                 <li>
-                  <Link to="/login" className="hover:text-gray-300">
-                    <p className="text-lg font-medium">LOGIN</p>
+                  <Link to="/login">
+                    <p className="text-xl">LOGIN</p>
                   </Link>
                 </li>
                 <li>
-                  <Link to="/registration" className="hover:text-gray-300">
-                    <p className="text-lg font-medium">Registration</p>
+                  <Link to="/signup">
+                    <p className="text-xl">SIGN UP</p>
                   </Link>
                 </li>
               </>
@@ -131,282 +129,293 @@ const Header = () => {
         </div>
 
         {/* User Icons */}
-        <div className="hidden lg:flex items-center space-x-6 text-white">
+        <div className="navbar-end text-white flex gap-5 items-center">
           {user ? (
             <>
-              <IoMdNotificationsOutline className="text-2xl cursor-pointer hover:text-gray-300" />
-              <Link to="/dashboard/profile">
+              <IoMdNotificationsOutline className="text-3xl" />
+
+              <Link to="/profile">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
                     alt="User Profile"
-                    className="w-10 h-10 rounded-full"
+                    className="text-3xl w-[50px] rounded-full"
                   />
                 ) : (
-                  <FaUserCircle className="text-3xl hover:text-gray-300" />
+                  <FaUserCircle className="text-3xl" />
                 )}
               </Link>
-              <button
-                onClick={signOut}
-                className="bg-white text-gray-700 rounded px-4 py-2 hover:bg-gray-100"
-              >
-                Logout
-              </button>
+
+              <div>
+                <button
+                  onClick={signOut}
+                  className="bg-white text-gray-700 rounded px-3 py-1"
+                >
+                  Logout
+                </button>
+              </div>
             </>
           ) : (
             <>
               <Link
                 to="/login"
-                className="bg-white text-gray-700 rounded px-4 py-2 hover:bg-gray-100"
+                className="bg-white text-gray-700 rounded px-3 py-1"
               >
                 Login
               </Link>
               <Link
                 to="/registration"
-                className="bg-white text-gray-700 rounded px-4 py-2 hover:bg-gray-100"
+                className="bg-white text-gray-700 rounded px-3 py-1"
               >
                 Registration
               </Link>
             </>
           )}
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden flex items-center space-x-4">
-          {user && (
-            <Link to="/dashboard/profile">
-              {user.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt="User Profile"
-                  className="w-8 h-8 rounded-full"
-                />
-              ) : (
-                <FaRegUserCircle className="text-2xl text-white" />
-              )}
-            </Link>
-          )}
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            {isMenuOpen ? (
-              <FaTimes className="w-6 h-6" />
-            ) : (
-              <FaBars className="w-6 h-6" />
-            )}
-          </button>
-        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-white fixed inset-0 z-50 overflow-y-auto">
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center space-x-4">
-                <img src={logo} alt="Logo" className="w-10 h-10" />
-                <img
-                  src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
-                  alt="Club Wyndham"
-                  className="w-16"
-                />
-              </div>
-              <button onClick={closeMenu} className="text-gray-600">
-                <FaTimes className="w-6 h-6" />
-              </button>
-            </div>
+      {/* Mobile Navbar */}
+      <div className="p-2">
+        <div className="container mx-auto flex lg:hidden justify-between items-center navbar">
+          <div className="flex justify-center items-center space-x-4">
+            {/* Logo */}
+            <Link to="/" className="z-20">
+              <img src={logo} alt="" className="w-[52px] h-[52px]" />
+            </Link>
+            <div className="w-[1px] h-14 bg-white"></div>
+            <img
+              src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
+              alt=""
+              className="w-22 h-10"
+            />
+          </div>
 
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  to="/lastCallVacation"
-                  onClick={closeMenu}
-                  className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                >
-                  <img
-                    src="https://www.rci.com/static/images/content/icons-header/book.svg"
-                    alt="Book"
-                    className="w-6 h-6"
-                  />
-                  <span className="text-lg">BOOK</span>
-                </Link>
-              </li>
-              {user && role ? (
+          {/* Mobile Dropdown */}
+          <div className="flex dropdown relative">
+            <div className="flex gap-4">
+              {user ? (
                 <>
-                  <li>
-                    <Link
-                      to="/"
-                      onClick={closeMenu}
-                      className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                    >
+                  <Link to="/profile">
+                    {user.photoURL ? (
                       <img
-                        src="https://www.rci.com/static/images/content/icons-header/trips.svg"
-                        alt="Trips"
-                        className="w-6 h-6"
+                        src={user.photoURL}
+                        alt="User Profile"
+                        className="text-2xl w-[30px] rounded-full"
                       />
-                      <span className="text-lg">TRIPS</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/"
-                      onClick={closeMenu}
-                      className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                    >
-                      <img
-                        src="https://www.rci.com/static/images/content/icons-header/offers.svg"
-                        alt="Deals"
-                        className="w-6 h-6"
-                      />
-                      <span className="text-lg">DEALS</span>
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link
-                    to="/"
-                    onClick={closeMenu}
-                    className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                  >
-                    <IoHomeOutline className="w-6 h-6" />
-                    <span className="text-lg">Home</span>
+                    ) : (
+                      <FaRegUserCircle className="text-3xl text-white" />
+                    )}
                   </Link>
-                </li>
-              )}
-            </ul>
-
-            <div className="my-6 border-t border-gray-200"></div>
-
-            <ul className="space-y-4">
-              {user && role ? (
-                role === "admin" ? (
-                  <>
-                    <li>
-                      <Link
-                        to="/admin-panel/admin-overview"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <FaWpforms className="w-6 h-6" />
-                        <span className="text-lg">Admin Panel</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/profile"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <FaRegUserCircle className="w-6 h-6" />
-                        <span className="text-lg">Profile</span>
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link
-                        to="/dashboard/overview"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <FaWpforms className="w-6 h-6" />
-                        <span className="text-lg">Dashboard</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/notifications"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <IoMdNotificationsOutline className="w-6 h-6" />
-                        <span className="text-lg">Notifications</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/myAccount"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <MdAccountBalanceWallet className="w-6 h-6" />
-                        <span className="text-lg">My Account</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/profile"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <FaRegUserCircle className="w-6 h-6" />
-                        <span className="text-lg">Profile</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/myFavorites"
-                        onClick={closeMenu}
-                        className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                      >
-                        <FaRegHeart className="w-6 h-6" />
-                        <span className="text-lg">My Favorites</span>
-                      </Link>
-                    </li>
-                  </>
-                )
+                  <PiSignOut
+                    onClick={signOut}
+                    className="text-3xl cursor-pointer text-white"
+                  />
+                </>
               ) : (
                 <>
-                  <li>
-                    <Link
-                      to="/login"
-                      onClick={closeMenu}
-                      className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                    >
-                      <FaWpforms className="w-6 h-6" />
-                      <span className="text-lg">Login</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/registration"
-                      onClick={closeMenu}
-                      className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                    >
-                      <FaRegUserCircle className="w-6 h-6" />
-                      <span className="text-lg">Registration</span>
-                    </Link>
-                  </li>
+                  <Link
+                    to="/login"
+                    className="text-white border rounded px-2 py-1 hover:bg-white hover:text-gray-500"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/registration"
+                    className="text-white border rounded px-2 py-1 hover:bg-white hover:text-gray-500"
+                  >
+                    Registration
+                  </Link>
                 </>
               )}
-              <li>
-                <Link
-                  to="/help"
-                  onClick={closeMenu}
-                  className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                >
-                  <IoIosHelpCircleOutline className="w-6 h-6" />
-                  <span className="text-lg">Help</span>
-                </Link>
-              </li>
-              {user && (
-                <li>
-                  <button
-                    onClick={() => {
-                      signOut();
-                      closeMenu();
-                    }}
-                    className="flex items-center space-x-3 text-gray-700 hover:text-[#037092]"
-                  >
-                    <PiSignOut className="w-6 h-6" />
-                    <span className="text-lg">Sign Out</span>
-                  </button>
-                </li>
+            </div>
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost"
+              onClick={toggleMenu}
+            >
+              {isMenuOpen ? (
+                <FaTimes className="h-8 w-8 text-xl text-white" />
+              ) : (
+                <FaBars className="h-8 w-8 text-xl text-white" />
               )}
-            </ul>
+            </div>
+            {isMenuOpen && (
+              <div className="p-5">
+                <ul className="absolute -right-5 menu menu-lg dropdown-content mt-5 p-6 shadow bg-white rounded-box w-screen z-10 h-fit flex flex-col space-y-2">
+                  <div className="">
+                    <Link to="/lastCallVacation" onClick={closeMenu}>
+                      <li className="flex font-regular text-gray-600">
+                        <div className="flex gap-3">
+                          <img
+                            src="https://www.rci.com/static/images/content/icons-header/book.svg"
+                            alt=""
+                          />
+                          <a>BOOK</a>
+                        </div>
+                      </li>
+                    </Link>
+                    {user && role ? (
+                      <div className="space-y-3">
+                        <Link to="/" onClick={closeMenu}>
+                          <li className="flex font-regular pt-2 text-gray-600">
+                            <div className="flex gap-3">
+                              <img
+                                src="https://www.rci.com/static/images/content/icons-header/trips.svg"
+                                alt=""
+                              />
+                              <a>TRIPS</a>
+                            </div>
+                          </li>
+                        </Link>
+
+                        <Link to="/" onClick={closeMenu}>
+                          <li className="flex font-regular pt-2 text-gray-600">
+                            <div className="flex gap-3">
+                              <img
+                                src="https://www.rci.com/static/images/content/icons-header/offers.svg"
+                                alt=""
+                              />
+                              <a>DEALS</a>
+                            </div>
+                          </li>
+                        </Link>
+                      </div> 
+                      
+                    ) : (
+                      <>
+                        <Link to="/" onClick={closeMenu}>
+                          <li className="flex font-regular text-gray-600">
+                            <div className="flex gap-3">
+                              <IoHomeOutline className="text-2xl" />
+                              <a>Home</a>
+                            </div>
+                          </li>
+                        </Link>
+                      </>
+                    )}
+
+                    
+                  </div>
+                  <div className="divider border-[1px] border-gray-200"></div>
+                  <div className="divider"></div>
+                  <div className="flex justify-start  flex-col gap-3 ">
+                    {user && role ? (
+                      <>
+                        {role === "admin" ? (
+                          <div>
+                            <Link
+                              to="/admin-panel/admin-overview"
+                              onClick={closeMenu}
+                            >
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <FaWpforms className="text-2xl" />
+                                  <a>AdminPanel</a>
+                                </div>
+                              </li>
+                            </Link>
+                            <Link to="/profile" onClick={closeMenu}>
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <FaRegUserCircle className="text-2xl" />
+                                  <a>Profile</a>
+                                </div>
+                              </li>
+                            </Link>
+                          </div>
+                        ) : (
+                          <>
+                            <Link to="/dashboard" onClick={closeMenu}>
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <FaWpforms className="text-2xl" />
+                                  <a>Dashboard</a>
+                                </div>
+                              </li>
+                            </Link>
+
+                            <Link to="/" onClick={closeMenu}>
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <IoMdNotificationsOutline className="text-3xl" />
+                                  <a>Notifications</a>
+                                </div>
+                              </li>
+                            </Link>
+
+                            <Link to="/myAccount" onClick={closeMenu}>
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <MdAccountBalanceWallet className="text-2xl" />
+                                  <a>My Account</a>
+                                </div>
+                              </li>
+                            </Link>
+
+                            <Link to="/profile" onClick={closeMenu}>
+                              <li className="flex font-regular text-gray-600">
+                                <div className="flex gap-3">
+                                  <FaRegUserCircle className="text-2xl" />
+                                  <a>Profile</a>
+                                </div>
+                              </li>
+                            </Link>
+
+                            <li className="flex font-regular text-gray-600">
+                              <div className="flex gap-3">
+                                <FaRegHeart className="text-2xl" />
+                                <a>My Favorites</a>
+                              </div>
+                            </li>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        <Link to="/login" onClick={closeMenu}>
+                          <li className="flex font-regular text-gray-600">
+                            <div className="flex gap-3">
+                              <FaWpforms className="text-2xl" />
+                              <a>Login</a>
+                            </div>
+                          </li>
+                        </Link>
+
+                        <Link to="/registration" onClick={closeMenu}>
+                          <li className="flex font-regular text-gray-600">
+                            <div className="flex gap-3">
+                              <FaRegUserCircle className="text-2xl" />
+                              <a>Registration</a>
+                            </div>
+                          </li>
+                        </Link>
+                      </>
+                    )}
+
+                    <li className="flex font-regular text-gray-600">
+                      <div className="flex gap-3">
+                        <IoIosHelpCircleOutline className="text-2xl" />
+                        <a>Help</a>
+                      </div>
+                    </li>
+
+                    {user ? (
+                      <li className="flex font-regular text-gray-600">
+                        <div className="flex gap-3">
+                          <PiSignOut className="text-2xl" />
+                          <a onClick={signOut}>Sign Out</a>
+                        </div>
+                      </li>
+                    ) : null}
+                  </div>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
-      )}
+        <SearchBarMobile />
+      </div>
     </div>
   );
 };

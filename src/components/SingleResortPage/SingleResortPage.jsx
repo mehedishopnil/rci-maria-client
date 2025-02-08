@@ -6,6 +6,7 @@ import { GiStarsStack } from "react-icons/gi";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Loading from "../Loading";
 import FilterContent from "./FilterContent/FilterContent";
+import TopAmenities from "./TopAmenities/TopAmenities";
 
 const SingleResortPage = () => {
   const { allResortData } = useContext(AuthContext);
@@ -167,6 +168,7 @@ const SingleResortPage = () => {
 
           <div className="mt-2">
             <h1>Top Amenities</h1>
+            <TopAmenities />
             
           </div>
 

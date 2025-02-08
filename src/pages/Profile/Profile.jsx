@@ -17,7 +17,7 @@ const Profile = () => {
   const { name, email, photoURL } = user;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f1f1f1] ">
+    <div className="flex flex-col items-center pt-20 min-h-screen bg-[#f1f1f1] ">
       <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-md text-center">
         {/* Profile Picture */}
         <div className="relative">
