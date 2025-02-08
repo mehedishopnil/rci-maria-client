@@ -326,7 +326,7 @@ const Header = () => {
                           </div>
                         ) : (
                           <>
-                            <Link to="/dashboard" onClick={closeMenu}>
+                            <Link to="/dashboard/overview" onClick={closeMenu}>
                               <li className="flex font-regular text-gray-600">
                                 <div className="flex gap-3">
                                   <FaWpforms className="text-2xl" />
