@@ -106,7 +106,7 @@ const SearchBarMobile = () => {
                 </button>
             </div>
             {showHistoryDropdown && (
-                <div className="search-history-dropdown bg-white border mb-2 p-4">
+                <div className="search-history-dropdown bg-white rounded mb-2 p-4">
                     <h1 className="text-center mb-2">Your Search History</h1>
                     <ul >
                         {searchHistory.map((query, index) => (
