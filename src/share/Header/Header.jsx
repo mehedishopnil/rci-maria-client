@@ -164,7 +164,7 @@ const Header = () => {
                 Login
               </Link>
               <Link
-                to="/registration"
+                to="/signup"
                 className="bg-white text-gray-700 rounded px-3 py-1"
               >
                 Registration
@@ -220,7 +220,7 @@ const Header = () => {
                     Login
                   </Link>
                   <Link
-                    to="/registration"
+                    to="/signup"
                     className="text-white border rounded px-2 py-1 hover:bg-white hover:text-gray-500"
                   >
                     Registration
@@ -382,7 +382,7 @@ const Header = () => {
                           </li>
                         </Link>
 
-                        <Link to="/registration" onClick={closeMenu}>
+                        <Link to="/signup" onClick={closeMenu}>
                           <li className="flex font-regular text-gray-600">
                             <div className="flex gap-3">
                               <FaRegUserCircle className="text-2xl" />
