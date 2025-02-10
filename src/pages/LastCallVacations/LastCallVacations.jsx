@@ -13,20 +13,23 @@ const LastCallVacations = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const resortsPerPage = 15;
 
+  // Limit the data to 250 entries
+  const limitedResortData = allResortData ? allResortData.slice(0, 250) : [];
+
   // Update filteredData when resortData changes
   useEffect(() => {
-    if (resortData) {
-      setFilteredData(resortData);
+    if (limitedResortData) {
+      setFilteredData(limitedResortData);
     }
-  }, [resortData]);
+  }, [limitedResortData]);
 
   // Handle search functionality
   const handleSearch = () => {
     if (searchTerm.trim() === "") {
-      setFilteredData(resortData || []); // Fallback to empty array if resortData is undefined
+      setFilteredData(limitedResortData || []); // Fallback to empty array if limitedResortData is undefined
       return;
     }
-    const filteredResults = (allResortData || []).filter((resort) =>
+    const filteredResults = (limitedResortData || []).filter((resort) =>
       resort.location.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filteredResults);
@@ -43,6 +46,45 @@ const LastCallVacations = () => {
 
   // Total pages
   const totalPages = Math.ceil(filteredData.length / resortsPerPage);
+
+  // Mobile responsive pagination
+  const getPaginationButtons = () => {
+    const buttons = [];
+    const maxButtons = 5; // Maximum number of pagination buttons to show
+
+    if (totalPages <= maxButtons) {
+      for (let i = 1; i <= totalPages; i++) {
+        buttons.push(i);
+      }
+    } else {
+      let startPage = Math.max(currentPage - Math.floor(maxButtons / 2), 1);
+      let endPage = Math.min(startPage + maxButtons - 1, totalPages);
+
+      if (endPage - startPage < maxButtons - 1) {
+        startPage = Math.max(endPage - maxButtons + 1, 1);
+      }
+
+      if (startPage > 1) {
+        buttons.push(1);
+        if (startPage > 2) {
+          buttons.push('...');
+        }
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        buttons.push(i);
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          buttons.push('...');
+        }
+        buttons.push(totalPages);
+      }
+    }
+
+    return buttons;
+  };
 
   return (
     <div className="container mx-auto p-4 space-y-5 pb-20">
@@ -104,17 +146,18 @@ const LastCallVacations = () => {
           </button>
 
           {/* Page Numbers */}
-          {Array.from({ length: totalPages }, (_, index) => (
+          {getPaginationButtons().map((button, index) => (
             <button
-              key={index + 1}
-              onClick={() => paginate(index + 1)}
+              key={index}
+              onClick={() => typeof button === 'number' && paginate(button)}
+              disabled={button === '...'}
               className={`px-4 py-2 rounded-md ${
-                currentPage === index + 1
+                currentPage === button
                   ? "bg-[#037092] text-white"
                   : "bg-gray-200 hover:bg-gray-300"
               } transition-colors duration-300`}
             >
-              {index + 1}
+              {button}
             </button>
           ))}
 
