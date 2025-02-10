@@ -12,6 +12,7 @@ import MyBookings from "../pages/MyBookings/MyBookings";
 import SingleAvailableUnit from "../components/SingleResortPage/SingleAvailabelUnit/SingleAvailabelUnit";
 import AvailableBooking from "../components/SingleResortPage/AvailableBooking/AvailableBooking";
 import Search from "../components/Search/Search";
+import ResortInputForm from "../components/ResortInputForm/ResortInputForm";
 
 
 export const router = createBrowserRouter([
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
                {
                     path: "singleResortPage/:id",
                     element: <SingleResortPage/>
+               },
+               {
+                    path: "resortInputForm",
+                    element: <ResortInputForm/>
                },
                {
                     path: "login",

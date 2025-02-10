@@ -20,14 +20,13 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   // State variables
-  const [loading, setLoading] = useState(false); // Loading state for API calls
-  const [user, setUser] = useState(null); // User state to store authenticated user data
-  const [resortData, setResortData] = useState([]); // State for resort data
-  const [filteredData, setFilteredData] = useState([]); // State for filtered resort data
-  const [allResortData, setAllResortData] = useState([]); // State for all resort data
-  const [allUsersData, setAllUsersData] = useState([]); // State for all users data
-  const [role, setRole] = useState("user"); // State for user role
-
+  const [loading, setLoading] = useState(false); 
+  const [user, setUser] = useState(null); 
+  const [resortData, setResortData] = useState([]); 
+  const [filteredData, setFilteredData] = useState([]); 
+  const [allResortData, setAllResortData] = useState([]);
+  const [allUsersData, setAllUsersData] = useState([]); 
+  const [role, setRole] = useState("user");
   // Function to create user and send data to backend
   const createUser = async (name, email, password, membership) => {
     setLoading(true);
