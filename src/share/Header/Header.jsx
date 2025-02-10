@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; // Corrected import
 import logo from "../../assets/logo.svg";
 import {
   IoIosHelpCircleOutline,
@@ -36,22 +36,21 @@ const Header = () => {
       {/* Desktop Navbar */}
       <div className="container mx-auto hidden md:px-10 lg:flex justify-between items-center navbar">
         {/* Logo and Search Bar */}
-        <div className="navbar-start flex items-center gap-5">
-          <Link to="/" className="z-20">
+        <div className=" navbar-start flex items-center py-5 gap-5">
+          <Link to="/" className="z-20 md:flex md:items-center md:gap-3">
             <img src={logo} alt="Logo" className="w-12 h-12" />
-          
-          <div className="w-[1px] h-14 bg-white"></div>
-          <img
-            src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
-            alt=""
-            className="w-[80px]"
-          />
+            <div className="w-[1px] h-14 bg-white"></div>
+            <img
+              src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
+              alt=""
+              className="md:w-24 md:h-10"
+            />
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="navbar-center">
-          <ul className="menu menu-horizontal px-1 text-white">
+          <ul className="flex gap-5 menu menu-horizontal px-1 text-white">
             <li>
               <Link to="/lastCallVacation">
                 <p className="text-xl">BOOK</p>
@@ -281,8 +280,7 @@ const Header = () => {
                             </div>
                           </li>
                         </Link>
-                      </div> 
-                      
+                      </div>
                     ) : (
                       <>
                         <Link to="/" onClick={closeMenu}>
@@ -295,12 +293,10 @@ const Header = () => {
                         </Link>
                       </>
                     )}
-
-                    
                   </div>
                   <div className="divider border-[1px] border-gray-200"></div>
                   <div className="divider"></div>
-                  <div className="flex justify-start  flex-col gap-3 ">
+                  <div className="flex justify-start flex-col gap-3">
                     {user && role ? (
                       <>
                         {role === "admin" ? (
