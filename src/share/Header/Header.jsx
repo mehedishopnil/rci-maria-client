@@ -39,13 +39,14 @@ const Header = () => {
         <div className="navbar-start flex items-center gap-5">
           <Link to="/" className="z-20">
             <img src={logo} alt="Logo" className="w-12 h-12" />
-          </Link>
+          
           <div className="w-[1px] h-14 bg-white"></div>
           <img
             src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
             alt=""
             className="w-[80px]"
           />
+          </Link>
         </div>
 
         {/* Desktop Menu */}

@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import ResortCard from "../../components/ResortCard/ResortCard";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; // Corrected import
 
 const LastCallVacations = () => {
   const { resortData, allResortData, loading } = useContext(AuthContext);
@@ -11,22 +11,23 @@ const LastCallVacations = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [limitedResortData, setLimitedResortData] = useState([]); // State for limited data
   const resortsPerPage = 15;
 
-  // Limit the data to 250 entries
-  const limitedResortData = allResortData ? allResortData.slice(0, 250) : [];
-
-  // Update filteredData when resortData changes
+  // Update limitedResortData when allResortData changes
   useEffect(() => {
-    if (limitedResortData) {
-      setFilteredData(limitedResortData);
+    if (allResortData) {
+      // Limit the data to 250 entries
+      const limitedData = allResortData.slice(0, 250);
+      setLimitedResortData(limitedData);
+      setFilteredData(limitedData); // Initialize filteredData with limited data
     }
-  }, [limitedResortData]);
+  }, [allResortData]);
 
   // Handle search functionality
   const handleSearch = () => {
     if (searchTerm.trim() === "") {
-      setFilteredData(limitedResortData || []); // Fallback to empty array if limitedResortData is undefined
+      setFilteredData(limitedResortData || []); // Fallback to limitedResortData if search term is empty
       return;
     }
     const filteredResults = (limitedResortData || []).filter((resort) =>
