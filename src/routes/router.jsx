@@ -14,6 +14,7 @@ import AvailableBooking from "../components/SingleResortPage/AvailableBooking/Av
 import Search from "../components/Search/Search";
 import ResortInputForm from "../components/ResortInputForm/ResortInputForm";
 import Checkout from "../components/Checkout/Checkout";
+import Payment from "../components/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
                {
                     path: "MyBookings",
                     element: <MyBookings/>
+               },
+               {
+                    path: "payment",
+                    element: <Payment/>
                }
           ]
      }

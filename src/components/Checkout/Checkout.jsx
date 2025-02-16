@@ -58,7 +58,7 @@ const Checkout = () => {
         guestInfo: selectedOption === "A Guest" ? guestInfo : null,
       };
 
-      navigate("/payment", {
+      navigate("/dashboard/payment", {
         state: bookingData,
       });
     } else {
