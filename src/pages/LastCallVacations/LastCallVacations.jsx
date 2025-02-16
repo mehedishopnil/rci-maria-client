@@ -18,7 +18,7 @@ const LastCallVacations = () => {
   useEffect(() => {
     if (allResortData) {
       // Limit the data to 250 entries
-      const limitedData = allResortData.slice(0, 250);
+      const limitedData = allResortData.slice(0, 350);
       setLimitedResortData(limitedData);
       setFilteredData(limitedData); // Initialize filteredData with limited data
     }
