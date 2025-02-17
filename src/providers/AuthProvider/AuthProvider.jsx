@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
   const [bookingsData, setBookingsData] = useState([]);
   const [paymentInfoData, setPaymentInfoData] = useState({});
   const [role, setRole] = useState("user");
+
   // Function to create user and send data to backend
   const createUser = async (name, email, password, membership) => {
     setLoading(true);
@@ -116,6 +117,8 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  console.log(bookingsData)
 
   // Add the onAuthStateChanged useEffect here
   useEffect(() => {
@@ -495,16 +498,44 @@ const fetchBookingsData = async (email) => {
       );
     }
     const data = await response.json();
-    setBookingsData(data);
+    if (Array.isArray(data)) {
+      setBookingsData(data); // Set bookings data only if it's an array
+    } else {
+      setBookingsData([]); // Set to empty array if data is not in expected format
+    }
   } catch (error) {
     console.error("Error fetching bookings data:", error.message);
   } finally {
     setLoading(false);
   }
 };
-   
 
-  // Fetch payment information
+// Fetch all Booking Data
+const fetchAllBookingsData = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_Link}/all-bookings`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching all bookings data: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      setAllBookingsData(data); // Set all bookings data only if it's an array
+    } else {
+      setAllBookingsData([]); // Set to empty array if data is not in expected format
+    }
+  } catch (error) {
+    console.error("Error fetching all bookings data:", error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+// Fetch payment information for a specific user
 const fetchPaymentInformation = async (email) => {
   setLoading(true);
   try {
@@ -518,11 +549,16 @@ const fetchPaymentInformation = async (email) => {
     }
     const data = await response.json();
     if (Array.isArray(data) && data.length > 0) {
-      setPaymentInfoData(data[0]); // Assuming the first object in the array is the needed payment info
+      // Find the most recent booking for the user
+      const latestBooking = data.reduce((latest, booking) => {
+        return new Date(booking.createdAt) > new Date(latest.createdAt)
+          ? booking
+          : latest;
+      }, data[0]);
+      setPaymentInfoData(latestBooking); // Set the most recent booking as payment info
     } else {
-      setPaymentInfoData({});
+      setPaymentInfoData({}); // Set to empty object if no bookings found
     }
-
   } catch (error) {
     console.error("Error fetching payment information:", error.message);
   } finally {
@@ -531,35 +567,18 @@ const fetchPaymentInformation = async (email) => {
 };
 
 
-  // Fetch all Booking Data
-const fetchAllBookingsData = async () => {
-  setLoading(true);
-  try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_Link}/all-bookings`
-    );
-    if (!response.ok) {
-      throw new Error(
-        `Error fetching all resort data: ${response.status} ${response.statusText}`
-      );
-    }
-    const data = await response.json();
-    setAllBookingsData(data);
-  } catch (error) {
-    console.error("Error fetching all resort data:", error.message);
-  } finally {
-    setLoading(false);
+// Fetch all resort data and bookings data when the component mounts
+useEffect(() => {
+  fetchAllResorts();
+  fetchResortData();
+  if (user?.email) {
+    fetchBookingsData(user.email); // Fetch bookings for the logged-in user
+    fetchPaymentInformation(user.email); // Fetch payment info for the logged-in user
   }
-};
+  fetchAllBookingsData(); // Fetch all bookings data
+}, [user?.email]); // Add user.email as a dependency
 
-  // Fetch all resort data when the component mounts
-  useEffect(() => {
-    fetchAllResorts();
-    fetchResortData();
-    fetchBookingsData();
-    fetchPaymentInformation();
-    fetchAllBookingsData();
-  }, []);
+
 
   // Context value to be provided to the app
   const authInfo = {
