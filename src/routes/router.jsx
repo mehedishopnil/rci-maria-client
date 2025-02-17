@@ -15,6 +15,8 @@ import Search from "../components/Search/Search";
 import ResortInputForm from "../components/ResortInputForm/ResortInputForm";
 import Checkout from "../components/Checkout/Checkout";
 import Payment from "../components/Payment/Payment";
+import PaymentConfirmation from "../components/PaymentConfermation/PaymentConfermation";
+
 
 
 export const router = createBrowserRouter([
@@ -86,6 +88,11 @@ export const router = createBrowserRouter([
                {
                     path: "payment",
                     element: <Payment/>
+               },
+               {
+                    path: "payment-confirmation",
+                    element: <PaymentConfirmation/>
+ 
                }
           ]
      }

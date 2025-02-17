@@ -26,6 +26,9 @@ const AuthProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]); 
   const [allResortData, setAllResortData] = useState([]);
   const [allUsersData, setAllUsersData] = useState([]); 
+  const [allBookingsData, setAllBookingsData] = useState([]);
+  const [bookingsData, setBookingsData] = useState([]);
+  const [paymentInfoData, setPaymentInfoData] = useState({});
   const [role, setRole] = useState("user");
   // Function to create user and send data to backend
   const createUser = async (name, email, password, membership) => {
@@ -471,10 +474,91 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+
+  // Fetch all resort data when the component mounts
+useEffect(() => {
+  fetchAllResorts();
+}, []);
+
+
+
+// Fetch bookings data based on user's email
+const fetchBookingsData = async (email) => {
+  setLoading(true);
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_Link}/bookings?email=${email}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching bookings data: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    setBookingsData(data);
+  } catch (error) {
+    console.error("Error fetching bookings data:", error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+   
+
+  // Fetch payment information
+const fetchPaymentInformation = async (email) => {
+  setLoading(true);
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_Link}/bookings?email=${email}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching payment information: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    if (Array.isArray(data) && data.length > 0) {
+      setPaymentInfoData(data[0]); // Assuming the first object in the array is the needed payment info
+    } else {
+      setPaymentInfoData({});
+    }
+
+  } catch (error) {
+    console.error("Error fetching payment information:", error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  // Fetch all Booking Data
+const fetchAllBookingsData = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_Link}/all-bookings`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching all resort data: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    setAllBookingsData(data);
+  } catch (error) {
+    console.error("Error fetching all resort data:", error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
   // Fetch all resort data when the component mounts
   useEffect(() => {
     fetchAllResorts();
     fetchResortData();
+    fetchBookingsData();
+    fetchPaymentInformation();
+    fetchAllBookingsData();
   }, []);
 
   // Context value to be provided to the app
@@ -484,6 +568,9 @@ const AuthProvider = ({ children }) => {
     resortData,
     filteredData,
     allResortData,
+    allBookingsData,
+    bookingsData,
+    paymentInfoData,
     fetchResortData,
     createUser,
     login,

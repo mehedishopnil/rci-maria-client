@@ -26,6 +26,7 @@ const Payment = () => {
   const [loading, setLoading] = useState(false);
 
   const { email } = user;
+  console.log(email)
 
   const handleCardNumberChange = (e) => setCardNumber(e.target.value);
   const handleExpiryDateChange = (e) => setExpiryDate(e.target.value);
@@ -68,7 +69,7 @@ const Payment = () => {
       if (response.ok) {
         setLoading(false);
         alert("Payment confirmed!");
-        navigate("/payment-confirmation", {
+        navigate("/dashboard/payment-confirmation", {
           state: { resort },
         });
       } else {
