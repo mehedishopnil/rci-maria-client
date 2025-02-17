@@ -3,7 +3,7 @@ import { Link, useNavigate, Outlet } from "react-router-dom"; // Corrected impor
 import { Transition } from "@headlessui/react";
 import { HiOutlineHomeModern } from "react-icons/hi2";
 import { BsFillMenuButtonWideFill } from "react-icons/bs";
-import { FaHome, FaWpforms } from "react-icons/fa";
+import { FaCalendarCheck, FaHome, FaWpforms } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import logo from "../../assets/Rci-vertical.svg.png";
 
@@ -37,6 +37,15 @@ const Dashboard = () => {
               Overview
             </Link>
           </li>
+
+          <li className="hover:bg-blue-100 p-2 rounded-lg">
+            <Link to="overview" className="flex items-center gap-2">
+              <HiOutlineHomeModern className="text-blue-500" />
+              My Bookings
+            </Link>
+          </li>
+
+
           <li className="hover:bg-blue-100 p-2 rounded-lg">
             <Link to="resort-input-form" className="flex items-center gap-2">
               <FaWpforms className="text-green-500" />
@@ -88,6 +97,17 @@ const Dashboard = () => {
                 Overview
               </button>
             </li>
+
+            <li className="hover:bg-blue-100 p-2 rounded-lg">
+              <button
+                onClick={() => handleMenuItemClick("/dashboard/myBookings")}
+                className="flex items-center gap-2 w-full text-left"
+              >
+                <FaCalendarCheck className="text-blue-500" />
+                My Bookings
+              </button>
+            </li>
+
             <li className="hover:bg-green-100 p-2 rounded-lg">
               <button
                 onClick={() => handleMenuItemClick("/dashboard/resort-input-form")}

@@ -61,7 +61,7 @@ const Overview = () => {
                   <p className="mt-2 text-sm"><strong>Start Date:</strong> {startDate}</p>
                   <p className="text-sm"><strong>End Date:</strong> {endDate}</p>
                   <p className="text-sm"><strong>Unit Type:</strong> {unitType}</p>
-                  <Link to="/dashboard/my-bookings" className="mt-4">
+                  <Link to="/dashboard/myBookings" className="mt-4">
                     <button className="w-full text-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition">
                       See all the bookings
                     </button>

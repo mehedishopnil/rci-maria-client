@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
                     element: <Overview/>
                },
                {
-                    path: "MyBookings",
+                    path: "myBookings",
                     element: <MyBookings/>
                },
                {
