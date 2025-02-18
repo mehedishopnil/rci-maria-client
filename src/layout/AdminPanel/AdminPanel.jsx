@@ -5,7 +5,7 @@ import { HiOutlineHomeModern } from "react-icons/hi2";
 import { BsFillMenuButtonWideFill } from "react-icons/bs";
 import { FaHome, FaWpforms } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import logo from "../../../public/rci-logo-white.png";
+import logo from "../../assets/logo.svg";
 import { RiAdminLine } from "react-icons/ri";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { MdLibraryBooks, MdViewQuilt } from "react-icons/md";

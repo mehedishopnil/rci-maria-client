@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
   const [allBookingsData, setAllBookingsData] = useState([]);
   const [bookingsData, setBookingsData] = useState([]);
   const [paymentInfoData, setPaymentInfoData] = useState({});
-  const [role, setRole] = useState("user");
+  const [role, setRole] = useState(null);
 
   // Function to create user and send data to backend
   const createUser = async (name, email, password, membership) => {
@@ -118,8 +118,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  console.log(bookingsData)
-
   // Add the onAuthStateChanged useEffect here
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -174,7 +172,7 @@ const AuthProvider = ({ children }) => {
   const fetchAllUsersData = async () => {
     setLoading(true);
     try {
-      console.log("Fetching all users data...");
+  
       const response = await fetch(
         `${import.meta.env.VITE_API_Link}/all-users`
       );
@@ -185,6 +183,7 @@ const AuthProvider = ({ children }) => {
       }
       const data = await response.json();
       setAllUsersData(data);
+
     } catch (error) {
       console.error("Error fetching all users data:", error.message);
     } finally {
@@ -572,6 +571,7 @@ useEffect(() => {
   fetchAllResorts();
   fetchResortData();
   if (user?.email) {
+    setUserRole(user.email); // Set user role based on email
     fetchBookingsData(user.email); // Fetch bookings for the logged-in user
     fetchPaymentInformation(user.email); // Fetch payment info for the logged-in user
   }

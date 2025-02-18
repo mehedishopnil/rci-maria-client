@@ -16,6 +16,8 @@ import ResortInputForm from "../components/ResortInputForm/ResortInputForm";
 import Checkout from "../components/Checkout/Checkout";
 import Payment from "../components/Payment/Payment";
 import PaymentConfirmation from "../components/PaymentConfermation/PaymentConfermation";
+import AdminPanel from "../layout/AdminPanel/AdminPanel";
+import AdminOverview from "../pages/AdminOverview/AdminOverview";
 
 
 
@@ -95,5 +97,20 @@ export const router = createBrowserRouter([
  
                }
           ]
+     },
+
+     //Admin Part
+
+     {
+          path: "admin-panel",
+          element: <AdminPanel/>,
+          children: [
+               {
+                    path: "admin-overview",
+                    element: <AdminOverview/>
+               },
+               
+          ]
+
      }
 ])
