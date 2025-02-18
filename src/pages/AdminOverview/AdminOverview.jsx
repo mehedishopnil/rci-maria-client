@@ -4,19 +4,18 @@ import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Loading from "../../components/Loading";
 
 const AdminOverview = () => {
-  const { user, allBookingsData, allUsersData, fetchAllUsersData, fetchAllBookingsData } = useContext(AuthContext);
+  const { user, allBookingsData, allUsersData, fetchAllBookingsData } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
   console.log(allBookingsData)
   console.log(allUsersData)
-  console.log(fetchAllUsersData)
   console.log(fetchAllBookingsData)
 
   useEffect(() => {
     const loadData = async () => {
       try {
         if (!allUsersData) {
-          await fetchAllUsersData();
+          await allUsersData();
         }
         if (!allBookingsData) {
           await fetchAllBookingsData();
@@ -29,7 +28,7 @@ const AdminOverview = () => {
     };
 
     loadData();
-  }, [fetchAllUsersData, fetchAllBookingsData, allUsersData, allBookingsData]);
+  }, [allUsersData, fetchAllBookingsData, allUsersData, allBookingsData]);
 
   if (loading) {
     return <Loading />; // or any loading indicator you prefer
