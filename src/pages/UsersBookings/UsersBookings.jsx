@@ -3,7 +3,6 @@ import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 
 const UsersBookings = () => {
   const { allBookingsData } = useContext(AuthContext);
-  console.log(allBookingsData);
 
   return (
     <div className="p-4">

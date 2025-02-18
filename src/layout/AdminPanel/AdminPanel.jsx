@@ -105,8 +105,8 @@ const AdminPanel = () => {
               {/* Resort Input Form */}
               <li>
                 <Link
-                  to="/admin-panel/resort-input-form"
-                  onClick={() => handleMenuItemClick("/admin-panel/resort-input-form")}
+                  to="/resortInputForm"
+                  onClick={() => handleMenuItemClick("/resortInputForm")}
                   className="flex items-center gap-2"
                 >
                   <FaWpforms /> Resort Input Form
