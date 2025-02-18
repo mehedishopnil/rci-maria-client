@@ -50,7 +50,7 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <div className="navbar-center">
-          <ul className="flex gap-5 menu menu-horizontal px-1 text-white">
+          <ul className="flex gap-6 menu menu-horizontal space-y-2 px-1 text-white">
             <li>
               <Link to="/lastCallVacation">
                 <p className="text-xl">BOOK</p>
@@ -64,7 +64,7 @@ const Header = () => {
                   </Link>
                 </li>
                 {role === "admin" ? (
-                  <>
+                  <div className="space-y-5">
                     <li>
                       <Link to="/admin-panel/admin-overview">
                         <p className="text-xl">AdminPanel</p>
@@ -75,7 +75,7 @@ const Header = () => {
                         <p className="text-xl">Profile</p>
                       </Link>
                     </li>
-                  </>
+                  </div>
                 ) : (
                   <>
                     <li>
@@ -300,7 +300,7 @@ const Header = () => {
                     {user && role ? (
                       <>
                         {role === "admin" ? (
-                          <div>
+                          <div className="flex flex-col space-y-3">
                             <Link
                               to="/admin-panel/admin-overview"
                               onClick={closeMenu}
