@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     try {
       // Check if user already exists in the backend
       const userExistsResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${email}`
       );
 
       if (userExistsResponse.status === 404) {
@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
 
       // Send user data to backend
       const backendResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users`,
+        `${import.meta.env.VITE_API_Links}/users`,
         {
           method: "POST",
           headers: {
@@ -96,7 +96,7 @@ const AuthProvider = ({ children }) => {
 
       // Fetch specific user data from backend based on email
       const userDataResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${email}`
       );
       if (!userDataResponse.ok) {
         throw new Error("Failed to fetch user data from backend");
@@ -123,7 +123,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         // Fetch specific user data from the backend
-        fetch(`${import.meta.env.VITE_API_Link}/users?email=${currentUser.email}`)
+        fetch(`${import.meta.env.VITE_API_Links}/users?email=${currentUser.email}`)
           .then(async (res) => {
             if (!res.ok) {
               const responseText = await res.text();
@@ -152,7 +152,7 @@ const AuthProvider = ({ children }) => {
   const setUserRole = async (email) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${email}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch user data from backend");
@@ -174,7 +174,7 @@ const AuthProvider = ({ children }) => {
     try {
   
       const response = await fetch(
-        `${import.meta.env.VITE_API_Link}/all-users`
+        `${import.meta.env.VITE_API_Links}/all-users`
       );
       if (!response.ok) {
         throw new Error(
@@ -194,7 +194,7 @@ const AuthProvider = ({ children }) => {
   const updateUser = async (email, isAdmin) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_Link}/update-user`,
+        `${import.meta.env.VITE_API_Links}/update-user`,
         {
           method: "PATCH",
           headers: {
@@ -240,7 +240,7 @@ const AuthProvider = ({ children }) => {
 
       // Fetch specific user data from backend based on email
       const userDataResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${email}`
       );
       if (!userDataResponse.ok) {
         throw new Error("Failed to fetch user data from backend");
@@ -279,7 +279,7 @@ const AuthProvider = ({ children }) => {
 
       // Check if the user already exists in the backend
       const userExistsResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${user.email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${user.email}`
       );
 
       if (userExistsResponse.status === 404) {
@@ -287,7 +287,7 @@ const AuthProvider = ({ children }) => {
 
         // User does not exist, send user data to backend
         const backendResponse = await fetch(
-          `${import.meta.env.VITE_API_Link}/users`,
+          `${import.meta.env.VITE_API_Links}/users`,
           {
             method: "POST",
             headers: {
@@ -369,12 +369,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true); // Set loading state to true
     try {
       // Check if API link is defined in environment variables
-      if (!import.meta.env.VITE_API_Link) {
+      if (!import.meta.env.VITE_API_Links) {
         throw new Error("API link is not defined in environment variables.");
       }
 
       // Fetch resort data
-      const response = await fetch(`${import.meta.env.VITE_API_Link}/allResorts`);
+      const response = await fetch(`${import.meta.env.VITE_API_Links}/allResorts`);
 
       // Handle API errors
       if (!response.ok) {
@@ -411,12 +411,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true); // Set loading state to true
     try {
       // Check if API link is defined in environment variables
-      if (!import.meta.env.VITE_API_Link) {
+      if (!import.meta.env.VITE_API_Links) {
         throw new Error("API link is not defined in environment variables.");
       }
 
       // Fetch all resort data
-      const url = `${import.meta.env.VITE_API_Link}/allResorts`;
+      const url = `${import.meta.env.VITE_API_Links}/allResorts`;
       const response = await fetch(url);
 
       // Handle API errors
@@ -446,13 +446,13 @@ const AuthProvider = ({ children }) => {
   const fetchUserData = async (email) => {
     try {
       // Check if API link is defined in environment variables
-      if (!import.meta.env.VITE_API_Link) {
+      if (!import.meta.env.VITE_API_Links) {
         throw new Error("API link is not defined in environment variables.");
       }
 
       // Fetch user data
       const userDataResponse = await fetch(
-        `${import.meta.env.VITE_API_Link}/users?email=${email}`
+        `${import.meta.env.VITE_API_Links}/users?email=${email}`
       );
 
       // Handle API errors
@@ -489,7 +489,7 @@ const fetchBookingsData = async (email) => {
   setLoading(true);
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_Link}/bookings?email=${email}`
+      `${import.meta.env.VITE_API_Links}/bookings?email=${email}`
     );
     if (!response.ok) {
       throw new Error(
@@ -514,7 +514,7 @@ const fetchAllBookingsData = async () => {
   setLoading(true);
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_Link}/all-bookings`
+      `${import.meta.env.VITE_API_Links}/all-bookings`
     );
     if (!response.ok) {
       throw new Error(
@@ -539,7 +539,7 @@ const fetchPaymentInformation = async (email) => {
   setLoading(true);
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_Link}/bookings?email=${email}`
+      `${import.meta.env.VITE_API_Links}/bookings?email=${email}`
     );
     if (!response.ok) {
       throw new Error(
