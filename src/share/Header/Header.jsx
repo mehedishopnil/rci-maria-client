@@ -180,13 +180,13 @@ const Header = () => {
           <div className="flex justify-center items-center space-x-4">
             {/* Logo */}
             <Link to="/" className="z-20">
-              <img src={logo} alt="" className="w-[52px] h-[52px]" />
+              <img src={logo} alt="" className="w-[45px] h-[45px]" />
             </Link>
             <div className="w-[1px] h-14 bg-white"></div>
             <img
               src="https://www.rci.com/static/images/content/header/RCI-ClubWyndham-new.png"
               alt=""
-              className="w-22 h-10"
+              className="w-[55px]"
             />
           </div>
 
@@ -215,13 +215,13 @@ const Header = () => {
                 <>
                   <Link
                     to="/login"
-                    className="text-white border rounded px-2 py-1 hover:bg-white hover:text-gray-500"
+                    className="text-sm text-white border rounded px-1 py-1 hover:bg-white hover:text-gray-500"
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="text-white border rounded px-2 py-1 hover:bg-white hover:text-gray-500"
+                    className="text-sm text-white border rounded px-2 py-1 mr-1 hover:bg-white hover:text-gray-500"
                   >
                     Registration
                   </Link>
