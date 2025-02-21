@@ -192,7 +192,7 @@ const Header = () => {
 
           {/* Mobile Dropdown */}
           <div className="flex dropdown relative">
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               {user ? (
                 <>
                   <Link to="/profile">

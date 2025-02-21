@@ -4,6 +4,7 @@ import magazineImg from "../../assets/Images/rci-magazine-people-places.jpg";
 import img_nature from "../../assets/Images/C82-web-image.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router";
+import SearchEngine from "../../components/SearchEngine/SearchEngine";
 
 const Home = () => {
   // Static placeholder data for resorts
@@ -19,29 +20,28 @@ const Home = () => {
     <div>
       {/* Hero Section */}
       <div className="relative flex justify-center h-[660px] lg:h-[350px] lg:w-full lg:bg-center bg-no-repeat bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr-hero1.jpg?impolicy=club-570-760')] lg:bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr/wvr-hero4-desktop-500.jpg')]">
-        <div className="absolute top-[400px] lg:top-[150px] lg:left-16 px-5 py-8 rounded-3xl space-y-3 bg-white">
-          <div className="flex justify-center">
-            <h1 className="text-[1.5rem] font-semibold">
-              Find your dream vacation!
-            </h1>
-            <IoSearch className="text-5xl text-[#03709235]" />
-          </div>
+        <div className="w-3/4 absolute top-[400px] lg:top-[150px] lg:left-16 px-5 py-8 rounded-3xl space-y-3 bg-white">
+          
+          <SearchEngine
+            placeholder="Find Your Dream Vacation"
+            data={placeholderResorts}
+            storageKey="searchHistoryHome"
+            maxHistory={10}
+          />
           <div className="w-full h-[1px] bg-gray-300 mt-2"></div>
-          <h1 className="flex items-center text-center font-medium text-[#037092]">
-            See all RCI resorts <MdKeyboardDoubleArrowRight />
-          </h1>
+          <Link to="/lastCallVacation">
+            <h1 className="flex items-center text-center font-medium text-[#037092]">
+              See all RCI resorts <MdKeyboardDoubleArrowRight />
+            </h1>
+          </Link>
         </div>
       </div>
 
       {/* Targeted Clubs */}
       <Link to="#">
         <div>
-          <div className="flex flex-col items-center  bg-[#fbf3ec]">
-            {/* <img
-              src="https://clubs.rci.com/static/media/mi.d7834b71.svg"
-              alt="Targeted Clubs"
-              className=""
-            /> */}
+          <div className="flex flex-col items-center bg-[#fbf3ec]">
+            {/* Optional club image can go here */}
           </div>
           <div className="w-full py-5">
             <div className="px-5">
@@ -107,8 +107,6 @@ const Home = () => {
         </div>
       </Link>
 
-      
-
       {/* Limited Time Offers */}
       <Link to="#">
         <div className="bg-[#e6f8fc]">
@@ -169,27 +167,7 @@ const Home = () => {
 
       {/* Resorts Where I Can Hit the Beach */}
       <div className="bg-[#e3f5f9] py-5">
-        {/* <div className="flex flex-col items-center text-center">
-          <h1 className="text-4xl font-bold uppercase homeHeader">
-            Resorts where I can
-          </h1>
-          <h1 className="flex items-center text-4xl font-bold underline uppercase homeHeader text-[#037092]">
-            Hit the beach <IoIosArrowDown />
-          </h1>
-        </div> */}
-
-        
-
-        {/* <div className="">
-          <Link
-            to="/lastCallVacation"
-            className="flex items-center justify-center text-center"
-          >
-            <h1 className="w-1/2 border font-semibold uppercase text-[#037092] border-[#037092] p-2 rounded bg-white shadow hover:bg-[#037092] hover:text-white">
-              See more resorts like this
-            </h1>
-          </Link>
-        </div> */}
+        {/* Additional content can be placed here */}
       </div>
     </div>
   );
