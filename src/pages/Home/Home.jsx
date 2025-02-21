@@ -19,8 +19,8 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="relative flex justify-center h-[660px] lg:h-[350px] lg:w-full lg:bg-center bg-no-repeat bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr-hero1.jpg?impolicy=club-570-760')] lg:bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr/wvr-hero4-desktop-500.jpg')]">
-        <div className="w-3/4 absolute top-[400px] lg:top-[150px] lg:left-16 px-5 py-8 rounded-3xl space-y-3 bg-white">
+      <div className="relative flex justify-center h-[560px] lg:h-[350px] lg:w-full lg:bg-center bg-no-repeat bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr-hero1.jpg?impolicy=club-570-760')] lg:bg-[url('https://www.rci.com/static/images/content/_NAMER/clubs/wvr/wvr-hero4-desktop-500.jpg')]">
+        <div className="w-3/4 absolute top-[350px] lg:top-[150px] lg:left-16 px-5 py-8 rounded-3xl space-y-3 bg-white">
           
           <SearchEngine
             placeholder="Find Your Dream Vacation"
