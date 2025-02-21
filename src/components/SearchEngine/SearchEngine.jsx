@@ -112,7 +112,7 @@ const SearchEngine = ({
           className="w-full px-2 py-1 "
         />
         <button
-          className="absolute right-0 top-0 text-xl bg-white text-gray-400f px-3 py-1 rounded-r-full"
+          className="absolute right-0 top-0 text-xl bg-white text-gray-400 px-3 py-1 rounded-r-full"
           onClick={performSearch}
         >
           <IoSearch />

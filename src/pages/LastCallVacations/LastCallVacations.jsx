@@ -2,56 +2,36 @@ import { useContext, useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import ResortCard from "../../components/ResortCard/ResortCard";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom"; // Corrected import
+import { Link } from "react-router-dom";
 
 const LastCallVacations = () => {
-  const { resortData, allResortData, loading } = useContext(AuthContext);
-
-  // Local state for filtering and pagination
-  const [searchTerm, setSearchTerm] = useState("");
+  const { allResortData, loading } = useContext(AuthContext);
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [limitedResortData, setLimitedResortData] = useState([]); // State for limited data
+  const [limitedResortData, setLimitedResortData] = useState([]);
   const resortsPerPage = 15;
 
-  // Update limitedResortData when allResortData changes
+  // Limit the data to 350 entries and initialize filteredData
   useEffect(() => {
     if (allResortData) {
-      // Limit the data to 250 entries
       const limitedData = allResortData.slice(0, 350);
       setLimitedResortData(limitedData);
-      setFilteredData(limitedData); // Initialize filteredData with limited data
+      setFilteredData(limitedData);
     }
   }, [allResortData]);
-
-  // Handle search functionality
-  const handleSearch = () => {
-    if (searchTerm.trim() === "") {
-      setFilteredData(limitedResortData || []); // Fallback to limitedResortData if search term is empty
-      return;
-    }
-    const filteredResults = (limitedResortData || []).filter((resort) =>
-      resort.location.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredData(filteredResults);
-    setCurrentPage(1); // Reset to the first page after filtering
-  };
 
   // Pagination logic
   const indexOfLastResort = currentPage * resortsPerPage;
   const indexOfFirstResort = indexOfLastResort - resortsPerPage;
   const currentResorts = filteredData.slice(indexOfFirstResort, indexOfLastResort);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Total pages
   const totalPages = Math.ceil(filteredData.length / resortsPerPage);
 
-  // Mobile responsive pagination
+  // Generate pagination buttons
   const getPaginationButtons = () => {
     const buttons = [];
-    const maxButtons = 5; // Maximum number of pagination buttons to show
+    const maxButtons = 5;
 
     if (totalPages <= maxButtons) {
       for (let i = 1; i <= totalPages; i++) {
@@ -68,7 +48,7 @@ const LastCallVacations = () => {
       if (startPage > 1) {
         buttons.push(1);
         if (startPage > 2) {
-          buttons.push('...');
+          buttons.push("...");
         }
       }
 
@@ -78,7 +58,7 @@ const LastCallVacations = () => {
 
       if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
-          buttons.push('...');
+          buttons.push("...");
         }
         buttons.push(totalPages);
       }
@@ -89,35 +69,7 @@ const LastCallVacations = () => {
 
   return (
     <div className="container mx-auto p-4 space-y-5 pb-20">
-      {/* Search results count */}
-      {searchTerm && (
-        <div className="pt-2">
-          <h1 className="text-xl">{filteredData.length} Resorts</h1>
-        </div>
-      )}
-
-      <div className="divider"></div>
-
-      {/* Filter Section */}
-      <div className="w-full md:flex md:justify-center">
-        <div className="mb-4 flex md:w-1/2">
-          <input
-            type="text"
-            placeholder="Filter by location"
-            className="w-full px-3 py-2 border rounded-md"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button
-            onClick={handleSearch}
-            className="ml-2 px-3 py-2 bg-[#037092] text-white rounded-md hover:bg-[#025a73] transition-colors duration-300"
-          >
-            Filter
-          </button>
-        </div>
-      </div>
-
-      {/* Data showing section */}
+      {/* Data Display Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {loading ? (
           <Loading />
@@ -133,7 +85,6 @@ const LastCallVacations = () => {
       {/* Pagination Section */}
       <div className="flex justify-center mt-8">
         <nav className="flex gap-2">
-          {/* Previous Button */}
           <button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
@@ -146,12 +97,11 @@ const LastCallVacations = () => {
             Previous
           </button>
 
-          {/* Page Numbers */}
           {getPaginationButtons().map((button, index) => (
             <button
               key={index}
-              onClick={() => typeof button === 'number' && paginate(button)}
-              disabled={button === '...'}
+              onClick={() => typeof button === "number" && paginate(button)}
+              disabled={button === "..."}
               className={`px-4 py-2 rounded-md ${
                 currentPage === button
                   ? "bg-[#037092] text-white"
@@ -162,7 +112,6 @@ const LastCallVacations = () => {
             </button>
           ))}
 
-          {/* Next Button */}
           <button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === totalPages}
