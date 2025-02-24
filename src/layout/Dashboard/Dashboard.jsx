@@ -108,16 +108,6 @@ const Dashboard = () => {
               </button>
             </li>
 
-            <li className="hover:bg-green-100 p-2 rounded-lg">
-              <button
-                onClick={() => handleMenuItemClick("/dashboard/resort-input-form")}
-                className="flex items-center gap-2 w-full text-left"
-              >
-                <FaWpforms className="text-green-500" />
-                Resort Input Form
-              </button>
-            </li>
-
             <div className="divider"></div>
 
             <li className="hover:bg-gray-100 p-2 rounded-lg">
