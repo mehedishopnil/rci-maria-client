@@ -71,7 +71,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/profile">
+                      <Link to="/dashboard/profile">
                         <p className="text-xl">Profile</p>
                       </Link>
                     </li>
@@ -94,7 +94,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/profile">
+                      <Link to="/dashboard/profile">
                         <p className="text-xl">Profile</p>
                       </Link>
                     </li>
@@ -134,7 +134,7 @@ const Header = () => {
             <>
               <IoMdNotificationsOutline className="text-3xl" />
 
-              <Link to="/profile">
+              <Link to="/dashboard/profile">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -195,7 +195,7 @@ const Header = () => {
             <div className="flex gap-2">
               {user ? (
                 <>
-                  <Link to="/profile">
+                  <Link to="/dashboard/profile">
                     {user.photoURL ? (
                       <img
                         src={user.photoURL}
@@ -312,7 +312,7 @@ const Header = () => {
                                 </div>
                               </li>
                             </Link>
-                            <Link to="/profile" onClick={closeMenu}>
+                            <Link to="/dashboard/profile" onClick={closeMenu}>
                               <li className="flex font-regular text-gray-600">
                                 <div className="flex gap-3">
                                   <FaRegUserCircle className="text-2xl" />
@@ -350,7 +350,7 @@ const Header = () => {
                               </li>
                             </Link>
 
-                            <Link to="/profile" onClick={closeMenu}>
+                            <Link to="/dashboard/profile" onClick={closeMenu}>
                               <li className="flex font-regular text-gray-600">
                                 <div className="flex gap-3">
                                   <FaRegUserCircle className="text-2xl" />

@@ -20,6 +20,7 @@ import AdminPanel from "../layout/AdminPanel/AdminPanel";
 import AdminOverview from "../pages/AdminOverview/AdminOverview";
 import AdminControl from "../pages/AdminControl/AdminControl";
 import UsersBookings from "../pages/UsersBookings/UsersBookings";
+import UserControl from "../pages/UserControl/UserControl";
 
 
 
@@ -97,7 +98,8 @@ export const router = createBrowserRouter([
                     path: "payment-confirmation",
                     element: <PaymentConfirmation/>
  
-               }
+               },
+              
           ]
      },
 
@@ -118,6 +120,10 @@ export const router = createBrowserRouter([
                {
                     path: "users-bookings",
                     element: <UsersBookings/>
+               },
+               {
+                    path: "user-control",
+                    element: <UserControl/>
                }
           ]
 

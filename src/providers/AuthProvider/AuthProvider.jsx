@@ -584,6 +584,7 @@ useEffect(() => {
   const authInfo = {
     loading,
     user,
+    updateUser,
     resortData,
     filteredData,
     allResortData,
